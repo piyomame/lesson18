@@ -98,11 +98,6 @@ def update():
             turns2 = 0
             speedplay = 10
 
-    if speedplay == 20:
-        if turns2 >= 2:
-            turns2 = 0
-            speedplay = 10
-
 def draw():
     pyxel.cls(0)
     #凡リンゴ
