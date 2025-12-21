@@ -9,13 +9,6 @@ turns2 = 0
 time_counter = 0
 speedplay = 10
 
-def turnsapple():
-    if speedplay == 20:
-        turns2 = 0
-        if turns2 >= 2:
-            turns2 = 0
-            speedplay = 10
-
 # 初期のリンゴのリストは空にしておく
 apples = []
 apples2 = []
@@ -101,6 +94,11 @@ def update():
             player["y"] += speedplay
     
     if speedplay == 20: #特殊リンゴ取得後ターンカウント
+        if turns2 >= 2:
+            turns2 = 0
+            speedplay = 10
+
+    if speedplay == 20:
         if turns2 >= 2:
             turns2 = 0
             speedplay = 10
