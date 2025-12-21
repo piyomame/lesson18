@@ -9,22 +9,31 @@ time_counter = 0
 
 # 初期のリンゴのリストは空にしておく
 apples = []
+apples2 = []
 
 player = {"x": pyxel.width / 2 - 10, "y": pyxel.height - 20, "w": 20, "h": 20, "speed": 5}
 
 def add_apples():
-    """新しいリンゴを3個追加する関数"""
+    """新しいリンゴを4個追加する関数"""
     global turns
-    for _ in range(3):
+    #凡リンゴ
+    for _ in range(4):
         x_position = random.randint(5, pyxel.width - 15)
-        speed = random.randint(1, 8)
+        speed = random.randint(1, 7)
         apples.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
+    #特殊リンゴ
+    syutugennritu = [0,0,0,0,0,0,0,0,0,1]
+    tokusyu = random.choice(syutugennritu)
+    for _ in range(tokusyu):
+        x_position = random.randint(5, pyxel.width - 15)
+        speed = random.randint(5, 7)
+        apples2.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
     turns += 1  # リンゴを追加するたびにターン数を増やす
 
 def update():
-    global apples, score, time_counter
+    global apples, apples2, score, time_counter
 
-    if score >= 200:
+    if score >= 400:
         print(f"ゲーム終了！ターン数: {turns}")
         pyxel.quit()
 
@@ -33,13 +42,20 @@ def update():
     if time_counter >= 30 * 5:  # PyxelのデフォルトFPSは30なので、5秒ごとに
         add_apples()
         time_counter = 0
-
+    #凡リンゴ
     for apple in apples:
         apple["y"] += apple["speed"]
 
         if apple["y"] > pyxel.height:
             apple["alive"] = False
+    #特殊リンゴ
+    for apple2 in apples2:
+        apple2["y"] += apple2["speed"]
 
+        if apple2["y"] > pyxel.height:
+            apple2["alive"] = False
+
+    #凡リンゴ
     for apple in apples:
         if (player["x"] < apple["x"] + 10 and
             player["x"] + 40 > apple["x"] and
@@ -47,8 +63,17 @@ def update():
             player["y"] + 20 > apple["y"]):
             apple["alive"] = False
             score += 10
+    #特殊リンゴ
+    for apple2 in apples2:
+        if (player["x"] < apple2["x"] + 10 and
+            player["x"] + 40 > apple2["x"] and
+            player["y"] < apple2["y"] + 10 and
+            player["y"] + 20 > apple2["y"]):
+            apple2["alive"] = False
+            score += 10
 
     apples = [apple for apple in apples if apple["alive"]]
+    apples2 = [apple2 for apple2 in apples2 if apple2["alive"]]
 
     if pyxel.btn(pyxel.KEY_RIGHT):
         if player["x"] < pyxel.width - 20:
@@ -65,8 +90,12 @@ def update():
 
 def draw():
     pyxel.cls(0)
+    #凡リンゴ
     for apple in apples:
         pyxel.rect(apple["x"], apple["y"], 10, 10, 8)
+    #特殊リンゴ
+    for apple2 in apples2:
+        pyxel.rect(apple2["x"], apple2["y"], 10, 10, 5)
 
     pyxel.rect(player["x"], player["y"], 40, 20, 7)
 
