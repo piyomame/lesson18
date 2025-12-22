@@ -8,6 +8,11 @@ turns = 0  # ターン数を管理する変数
 turns2 = 0
 time_counter = 0
 speedplay = 10
+applestokusyu = 0
+hikakuapple = 0
+
+if applestokusyu == 1:
+    hikakuapple = turns2 + 2
 
 # 初期のリンゴのリストは空にしておく
 apples = []
@@ -24,7 +29,7 @@ def add_apples():
         speed = random.randint(1, 7)
         apples.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
     #特殊リンゴ
-    syutugennritu = [0,0,0,0,0,1]
+    syutugennritu = [1]
     tokusyu = random.choice(syutugennritu)
     for _ in range(tokusyu):
         x_position = random.randint(5, pyxel.width - 15)
@@ -34,7 +39,7 @@ def add_apples():
     turns2 += 1
 
 def update():
-    global apples, apples2, score, time_counter ,speedplay, turns2
+    global apples, apples2, score, time_counter ,speedplay, turns2, hikakuapple, applestokusyu
 
     if score >= 400:
         print(f"ゲーム終了！ターン数: {turns}")
@@ -75,6 +80,7 @@ def update():
             player["y"] + 20 > apple2["y"]):
             apple2["alive"] = False
             speedplay = 20
+            applestokusyu = 1
             
 
     apples = [apple for apple in apples if apple["alive"]]
@@ -94,9 +100,13 @@ def update():
             player["y"] += speedplay
     
     if speedplay == 20: #特殊リンゴ取得後ターンカウント
-        if turns2 >= 2:
+        print("A")
+        if turns2 == hikakuapple:
+            print("B")
             turns2 = 0
+            print("C")
             speedplay = 10
+            print("D")
 
 def draw():
     pyxel.cls(0)
