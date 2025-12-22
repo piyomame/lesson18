@@ -16,7 +16,7 @@ haba = 40
 apples = []
 apples2 = []
 apples3 = []
-apples4 = []
+#apples4 = []
 
 player = {"x": pyxel.width / 2 - 10, "y": pyxel.height - 20, "w": haba, "h": 20, "speed": speedplay}
 
@@ -43,12 +43,12 @@ def add_apples():
         speed = random.randint(5, 7)
         apples3.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
     #特殊リンゴ3
-    syutugennritu3 = [1]
-    tokusyu3 = random.choice(syutugennritu3)
-    for _ in range(tokusyu3):
-        x_position = random.randint(5, pyxel.width - 15)
-        speed = random.randint(5, 7)
-        apples4.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
+#    syutugennritu3 = [1]
+#    tokusyu3 = random.choice(syutugennritu3)
+#    for _ in range(tokusyu3):
+#        x_position = random.randint(5, pyxel.width - 15)
+#        speed = random.randint(5, 7)
+#        apples4.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
 
     turns += 1  # リンゴを追加するたびにターン数を増やす
 
@@ -91,11 +91,11 @@ def update():
         if apple3["y"] > pyxel.height:
             apple3["alive"] = False
     #特殊リンゴ3
-    for apple4 in apples4:
-        apple4["y"] += apple4["speed"]
+#    for apple4 in apples4:
+#        apple4["y"] += apple4["speed"]
 
-        if apple4["y"] > pyxel.height:
-            apple4["alive"] = False
+#        if apple4["y"] > pyxel.height:
+#            apple4["alive"] = False
 
     #凡リンゴ
     for apple in apples:
@@ -122,19 +122,19 @@ def update():
             apple3["alive"] = False
             score += 40
     #特殊リンゴ4
-    for apple4 in apples4:
-        if (player["x"] < apple4["x"] + 10 and
-            player["x"] + 40 > apple4["x"] and
-            player["y"] < apple4["y"] + 10 and
-            player["y"] + 20 > apple4["y"]):
-            apple4["alive"] = False
-            haba = 60
+#    for apple4 in apples4:
+#        if (player["x"] < apple4["x"] + 10 and
+#            player["x"] + 40 > apple4["x"] and
+#            player["y"] < apple4["y"] + 10 and
+#            player["y"] + 20 > apple4["y"]):
+#            apple4["alive"] = False
+#            haba = 60
             
 
     apples = [apple for apple in apples if apple["alive"]]
     apples2 = [apple2 for apple2 in apples2 if apple2["alive"]]
     apples3 = [apple3 for apple3 in apples3 if apple3["alive"]]
-    apples4 = [apple4 for apple4 in apples4 if apple4["alive"]]
+#    apples4 = [apple4 for apple4 in apples4 if apple4["alive"]]
 
     if pyxel.btn(pyxel.KEY_RIGHT):
         if player["x"] < pyxel.width - 20:
@@ -161,8 +161,8 @@ def draw():
     for apple3 in apples3:
         pyxel.rect(apple3["x"], apple3["y"], 10, 10, 10)
     #特殊リンゴ3
-    for apple4 in apples4:
-        pyxel.rect(apple4["x"], apple4["y"], 10, 10, 3)
+#    for apple4 in apples4:
+#        pyxel.rect(apple4["x"], apple4["y"], 10, 10, 3)
 
     pyxel.rect(player["x"], player["y"], player["w"], 20, 7)
 
