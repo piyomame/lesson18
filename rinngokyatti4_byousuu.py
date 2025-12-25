@@ -58,7 +58,7 @@ def add_apples():
         speed = random.randint(speedapple3, speedapple2)
         apples4.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
     #特殊リンゴ４
-    syutugennritu4 = [0,0,0,0,1]
+    syutugennritu4 = [0,0,0,0,0,1]
     tokusyu4 = random.choice(syutugennritu4)
     for _ in range(tokusyu4):
         x_position = random.randint(5, pyxel.width - 15)
@@ -97,8 +97,8 @@ def update():
 
     if applesspeed == 2:
         speedapple1 = 4
-        speedapple2 = 8
-        speedapple3 = 6
+        speedapple2 = 9
+        speedapple3 = 7
         time_counter4 += 1
         if time_counter4 >= 30 * 15: 
             time_counter4 = 0
