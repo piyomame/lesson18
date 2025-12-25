@@ -58,7 +58,7 @@ def add_apples():
         speed = random.randint(speedapple3, speedapple2)
         apples4.append({"x": x_position, "y": 0, "speed": speed, "alive": True})
     #特殊リンゴ４
-    syutugennritu4 = [0,0,0,0,0,1]
+    syutugennritu4 = [0,0,0,0,1]
     tokusyu4 = random.choice(syutugennritu4)
     for _ in range(tokusyu4):
         x_position = random.randint(5, pyxel.width - 15)
