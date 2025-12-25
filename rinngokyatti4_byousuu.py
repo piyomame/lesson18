@@ -211,7 +211,7 @@ def draw():
         pyxel.rect(apple3["x"], apple3["y"], 10, 10, 10)
     #特殊リンゴ3
     for apple4 in apples4:
-        pyxel.rect(apple4["x"], apple4["y"], 10, 10, 3)
+        pyxel.rect(apple4["x"], apple4["y"], 10, 10, 15)
     #
     for apple5 in apples5:
         pyxel.rect(apple5["x"], apple5["y"], 10, 10, 2)
